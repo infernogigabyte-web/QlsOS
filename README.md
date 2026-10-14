@@ -1,6 +1,6 @@
-# QuaOS
+# QuasarOS (QuaOS)
 
-A small operating system written from scratch: bootloader, kernel and shell, no third-party
+**QuasarOS** — *QuaOS* for short (the name used in the code, shell and docs) — is a small operating system written from scratch: bootloader, kernel and shell, no third-party
 libraries. Runs on **x86 (32-bit)** and **ARM (Cortex-A15, QEMU `virt`)** inside QEMU.
 It is a hobby/educational project — the kernel is fully its own (Linux/WSL is only used as the build tool).
 
