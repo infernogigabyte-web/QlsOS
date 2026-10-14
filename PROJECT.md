@@ -1,4 +1,4 @@
-# QuaOS — about the project
+# QuasarOS (QuaOS) — about the project
 
 A hand-written educational operating system: a bootloader, a kernel and a command
 shell built from scratch, with no third-party libraries. It runs on two
@@ -34,7 +34,7 @@ HAL · SMP · POSIX layer / toolchain / WASM runtime · later orthogonal persist
 
 **What this means for the current code (state at the `unix-13` snapshot):**
 `fork`, `waitpid`, signals (`kill`, `signal`, `sigreturn`), PIDs and the shell command `kill <pid>` are
-**legacy**. Signals are rolled back first (task 1; the snapshot is kept as git tag `unix-13`);
+**legacy**. Signals are rolled back first (task 1; the `unix-13` state is kept as the zip snapshot `QuaOS_9_oct_signals.zip`);
 fork/wait are removed in task 21 after spawn and the result channel exist. The ELF loader,
 ring3 and per-process page directories stay and are the base of the new design.
 The descriptions of these legacy parts below are kept because they describe the code as it is today.
@@ -142,11 +142,12 @@ address spaces, preemptive scheduler. Next: block A, task 1 (roll back signals).
 
 ## Development history
 
-Committed in git (12 commits): Stage 6 (HAL + ARM + ACPI/PSCI + documentation) → ATA/IDE, RTC, PCI, a
-terminal with colors and scrolling → QuaFS v0 → Phase 0 (mouse, VFS) → Phase 1 (open/read/write/close,
-RAM disk, initrd) → Phase 2.1 (preemptive multitasking) → Phase 2.2 (separate process address spaces).
+Stages so far: Stage 6 (HAL + ARM + ACPI/PSCI + documentation) → ATA/IDE, RTC, PCI, a terminal with colors
+and scrolling → QuaFS v0 → Phase 0 (mouse, VFS) → Phase 1 (open/read/write/close, RAM disk, initrd) →
+Phase 2.1 (preemptive multitasking) → Phase 2.2 (separate process address spaces) → rename FlowOS → QuaOS,
+ELF loader, `fork`, `waitpid`, signals (the `unix-13` state) → new plan (capability microkernel).
 
-**Not committed yet:** the rename FlowOS → QuaOS (FlowFS → QuaFS), the ELF loader, `fork`, `waitpid`,
-signals (`unix-13` state), `user/`, `tests/`, and the documentation. Task 1 of the new plan expects the `unix-13` tag, so commit first. Run `git add -A && git commit` to record them.
+The source is hosted on GitHub: https://github.com/infernogigabyte-web/QuasarOS .
+Working snapshots between plan tasks are kept as zip files.
 
 More about the early stages and troubleshooting: `docs/history.md`.
