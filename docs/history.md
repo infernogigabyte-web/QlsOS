@@ -1,4 +1,4 @@
-# QuaOS — development notes and troubleshooting (old README)
+# QlsOS — development notes and troubleshooting (old README)
 
 This is the former `README.txt`, kept unchanged below the line for the history of the early stages
 and the troubleshooting notes. The current overview is in `README.md`, the project summary in `PROJECT.md`.
@@ -6,7 +6,7 @@ and the troubleshooting notes. The current overview is in `README.md`, the proje
 ---
 
 ```
-QuaOS — standalone bootloader + kernel + shell
+QlsOS — standalone bootloader + kernel + shell
 ==================================================
 
 STRUCTURE (outdated after the split into HAL/arch — the current directory map
@@ -92,7 +92,7 @@ SHELL COMMANDS:
   reboot  - reboot the machine (via the 8042 keyboard controller)
 
 HOW TO RUN (Windows + WSL):
-  1. Unpack quaos.zip — run.bat lies INSIDE the quaos folder, next
+  1. Unpack qlsos.zip — run.bat lies INSIDE the qlsos folder, next
      to build_and_run.sh and the Makefile (there is no need to move it anywhere)
   2. Double-click run.bat (x86) or run "run.bat arm" from cmd (the ARM port)
      - If nasm/qemu (or for arm: arm-none-eabi-gcc/qemu-system-arm) are not
@@ -109,11 +109,11 @@ IF THE QEMU WINDOW DOES NOT APPEAR:
     wsl --shutdown
   and try again. WSLg ships by default in Windows 11 and in recent
   builds of Windows 10. If it still doesn't work at all — you can run manually
-  from a WSL terminal: cd quaos && make run-headless
+  from a WSL terminal: cd qlsos && make run-headless
   (this won't show graphics, but will show the boot serial log in the console).
 
 IF THE WINDOW SHOWS "[WARN:COPY MODE]" AND A BLANK SCREEN:
-  This is a glitch of the WSLg/FreeRDP client window itself, not of the QuaOS system —
+  This is a glitch of the WSLg/FreeRDP client window itself, not of the QlsOS system —
   if the kernel had really crashed, the serial log (see run-headless) would
   show panics or resets, and there are none. run.bat/build_and_run.sh now
   try the display options in turn themselves: gtk -> sdl -> curses
@@ -122,7 +122,7 @@ IF THE WINDOW SHOWS "[WARN:COPY MODE]" AND A BLANK SCREEN:
   window and running run.bat again, or wsl --shutdown and start over.
 
 REBUILD AFTER CHANGES:
-  Inside WSL: cd quaos && make clean && make && make run
+  Inside WSL: cd qlsos && make clean && make && make run
 
 ============================================================
 STAGE 6, items 89-90: HAL + the ARM port
