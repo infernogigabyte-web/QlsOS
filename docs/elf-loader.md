@@ -50,6 +50,6 @@ failure point, `ustack_build`, and 200k mutation-fuzz iterations. It does NOT bo
 * **The bootloader reads the kernel with one `int 0x13` into 0x10000; the kernel image must stay
   <= 64 KB** (the BIOS cannot DMA across 0x20000). The Makefile now fails the build above that.
   Fixing it properly means reading in two chunks in `boot/boot.asm`.
-* Built-in programs only live in the kernel image; there is no way yet to copy a binary into QuaFS
+* Built-in programs only live in the kernel image; there is no way yet to copy a binary into QlsFS
   (a `cp` command or a host tool would fix that).
-* No exit code, heap (brk), wait/spawn syscalls, argv-based environment, or Ctrl+C (Esc is used).
+* No heap (brk), spawn syscall (a result channel comes later), environment, or Ctrl+C (Esc is used). The exit code exists (`SYS_EXIT`).
