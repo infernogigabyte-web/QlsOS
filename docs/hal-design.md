@@ -1,4 +1,3 @@
-
 # HAL design (stages 89–90)
 
 ## Why a HAL at all
