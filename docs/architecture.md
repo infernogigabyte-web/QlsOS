@@ -1,5 +1,4 @@
-
-# QuaOS architecture
+# QlsOS architecture
 
 This document is a general map of the system. For how exactly the split between
 common code and architecture code (the HAL) works, see `docs/hal-design.md` separately —
@@ -105,7 +104,7 @@ a static arena in `.bss`, with no tie to the physical memory map.
 | Timer               | PIT, 100Hz, via IRQ0              | ARM generic timer (CP15), via GIC IRQ 30 | — |
 | Memory              | E820 -> PMM (bitmap) -> paging (identity 256MB) -> kheap | a static kheap arena (no PMM/paging) | `kheap.c` |
 | Multitasking        | `context_switch.asm` (push ebx/esi/edi/ebp) | `context_switch.S` (push r4-r11,lr) | `task.c` (preemptive round-robin on x86, timer-driven) |
-| Ring3/syscalls      | GDT+TSS, `int 0x80`, per-process page directories, ELF loader, fork/waitpid/signals | not ported | — |
+| Ring3/syscalls      | GDT+TSS, `int 0x80`, per-process page directories, ELF loader, fork/waitpid (legacy) | not ported | — |
 | Shell               | —                                  | —                                       | `shell.c` (line editor, history, commands) |
 | Reboot/poweroff     | ACPI (RSDT/FADT/DSDT `\_S5`, Reset Register) + fallback (8042/triple fault) | PSCI (`SYSTEM_RESET`/`SYSTEM_OFF` via HVC/SMC) | — |
 
