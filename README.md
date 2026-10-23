@@ -78,12 +78,17 @@ make clean            # Flushes build caches and object structures
 
 ## Native Microkernel Shell Commands
 
-Boot into the interactive QlsOS command-line interface to execute the following core primitives:
+Boot into the interactive QlsOS command-line interface to execute the core primitives. **Note that there are more commands available** within the system:
 *   `help` / `help <topic>`: Show organized technical topics (`basic`, `files`, `programs`, `system`, `tests`).
 *   `ps`: Dumps active tasks, process status, hierarchy mappings, and exact CPU ticks.
 *   `exec <elf_program>`: Executes a static ELF32 binary within isolated ring3 execution rights.
 *   `write <file> <text>` / `cat <file>`: Creates data sequences or prints file buffers directly from QlsFS.
 *   `faulttest` / `limtest` / `slottest`: Triggers deliberate memory page faults, execution limits, and recycling loops to demonstrate microkernel resilience.
+*   `ls` / `dir`: Lists available files and layout components within the active filesystem.
+*   `clear` / `cls`: Flushes the text display terminal and resets console positioning.
+*   `bench`: Executes integrated microkernel subsystem performance and clock-tick latency metrics.
+*   `echo <text>`: Repeats the specified text argument sequence directly back to the terminal.
+*   `reboot`: Signals the HAL layer to execute an immediate hardware restart sequence.
 
 ---
 
